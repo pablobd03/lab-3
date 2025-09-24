@@ -4,7 +4,7 @@ int factorial(int n) {
     int i = 1;
     while (n > 1) {
         i = i * n;
-        int  n = n - 1;
+        n = n - 1; //Se elimina la declación de n en el scope
     }
     return i;
 }
