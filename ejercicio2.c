@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
 #define SIZE 3
 
 bool cuadradoMagico(int matrix[][SIZE]) {
@@ -9,9 +11,7 @@ bool cuadradoMagico(int matrix[][SIZE]) {
 	//Suma la primera línea y la toma como referencia
 	for(j=0; j<SIZE; j++){
         	suma_ref+=matrix[0][j];
-        }
-	printf("%d %d \n", suma_ref, SIZE);  
-
+ 	}         
 
 	//Suma las filas
 	for(i=0; i<SIZE; i++){
@@ -22,7 +22,6 @@ bool cuadradoMagico(int matrix[][SIZE]) {
 		if(suma_fila!=suma_ref){
 			return false; //Devuelve false si la suma en una fila es distinta a la referencia
 		}
-		printf("%d \n", suma_fila);
 
 	}
 
@@ -31,13 +30,10 @@ bool cuadradoMagico(int matrix[][SIZE]) {
         	int suma_columna=0;
                 for(j=0; j<SIZE; j++){
                         suma_columna+=matrix[j][i];
-                }
-		printf("%d \n", suma_columna);
+            	}
 		if(suma_columna!=suma_ref){
                         return false; //Devuelve false si la suma en una columna es distinta a la referencia
                 }
-		
-
         }
 
 	//Primera diagonal
@@ -46,7 +42,6 @@ bool cuadradoMagico(int matrix[][SIZE]) {
                 suma_diagonal_1+=matrix[i][i];
         }
 	
-	printf("%d \n", suma_diagonal_1);
 	if(suma_diagonal_1!=suma_ref){
         	return false; //Devuelve false si la suma en la primera diagonal es distinta a la referencia
         }
@@ -58,7 +53,6 @@ bool cuadradoMagico(int matrix[][SIZE]) {
         	
 	}
         
-	printf("%d \n", suma_diagonal_2); 
 
         if(suma_diagonal_2!=suma_ref){
                 return false; //Devuelve false si la suma en la segunda diagonal es distinta a la referencia
@@ -85,14 +79,14 @@ int main() {
 	};
 	*/
 
-	int matrix [SIZE][SIZE]= {
+	int matrix[SIZE][SIZE];
+	srand(time(0)); //Permite obtener una matriz al azar distinta
 		for(int i=0; i<SIZE; i++){
                 	for(int j=0; j<SIZE; j++){
                         	matrix[i][j] = rand() % 10;
                 	}
         	}
 
-	}
 
 
 	int cuadrado_magico = cuadradoMagico(matrix);
