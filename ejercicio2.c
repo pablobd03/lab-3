@@ -1,20 +1,107 @@
 #include <stdio.h>
-#define SIZE 5
+#include <stdbool.h>
+#define SIZE 3
 
-int findLargestLine(int matrix[][SIZE]) {
-    // Su implementacion
+bool cuadradoMagico(int matrix[][SIZE]) {
+	int j,i;
+	int suma_ref=0;
+	
+	//Suma la primera línea y la toma como referencia
+	for(j=0; j<SIZE; j++){
+        	suma_ref+=matrix[0][j];
+        }
+	printf("%d %d \n", suma_ref, SIZE);  
+
+
+	//Suma las filas
+	for(i=0; i<SIZE; i++){
+		int suma_fila=0;
+		for(j=0; j<SIZE; j++){
+			suma_fila+=matrix[i][j];
+		}
+		if(suma_fila!=suma_ref){
+			return false; //Devuelve false si la suma en una fila es distinta a la referencia
+		}
+		printf("%d \n", suma_fila);
+
+	}
+
+	//Suma las columnas
+	for(i=0; i<SIZE; i++){
+        	int suma_columna=0;
+                for(j=0; j<SIZE; j++){
+                        suma_columna+=matrix[j][i];
+                }
+		printf("%d \n", suma_columna);
+		if(suma_columna!=suma_ref){
+                        return false; //Devuelve false si la suma en una columna es distinta a la referencia
+                }
+		
+
+        }
+
+	//Primera diagonal
+	int suma_diagonal_1=0;
+	for(i=0; i<SIZE; i++){
+                suma_diagonal_1+=matrix[i][i];
+        }
+	
+	printf("%d \n", suma_diagonal_1);
+	if(suma_diagonal_1!=suma_ref){
+        	return false; //Devuelve false si la suma en la primera diagonal es distinta a la referencia
+        }
+
+	//Segunda diagonal
+	int suma_diagonal_2=0;
+	for(i=0; i<SIZE; i++){
+		suma_diagonal_2+=matrix[i][SIZE-1-i];
+        	
+	}
+        
+	printf("%d \n", suma_diagonal_2); 
+
+        if(suma_diagonal_2!=suma_ref){
+                return false; //Devuelve false si la suma en la segunda diagonal es distinta a la referencia
+        }
+
+	return true;
+}
+
+void imprimirMatriz(int matrix[][SIZE]){
+	for(int i=0; i<SIZE; i++){
+                for(int j=0; j<SIZE; j++){
+                        printf("%d ", matrix[i][j]);
+                }
+		printf("\n");
+        }
+
 }
 
 int main() {
-    int matrix[SIZE][SIZE] = {
-        {2, 7, 6},
-        {9, 5, 1},
-        {4, 3, 8}
-    };
+	/*int matrix[SIZE][SIZE] = {
+		{2, 7, 6},
+		{9, 5, 1},
+		{4, 3, 8}
+	};
+	*/
 
-    int largestLine = findLargestLine(matrix);
-    printf("El tamano de la secuencia de 1s mas grande es: %d\n", largestLine);
+	int matrix [SIZE][SIZE]= {
+		for(int i=0; i<SIZE; i++){
+                	for(int j=0; j<SIZE; j++){
+                        	matrix[i][j] = rand() % 10;
+                	}
+        	}
 
-    return 0;
+	}
+
+
+	int cuadrado_magico = cuadradoMagico(matrix);
+	printf("La matriz utilizada corresponde a: \n");
+	imprimirMatriz(matrix);
+	(cuadrado_magico==false) ?
+	printf("La matriz no es cuadrado mágico. \n") :
+	printf("La matriz es cuadrado mágico. \n");
+
+	return 0;
 }
 
