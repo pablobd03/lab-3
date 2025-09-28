@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define SIZE 3
 
@@ -76,8 +77,8 @@ int main() {
 		{2, 7, 6},
 		{9, 5, 1},
 		{4, 3, 8}
-	};
-	*/
+	};*/
+	
 
 	int matrix[SIZE][SIZE];
 	srand(time(0)); //Permite obtener una matriz al azar distinta
@@ -86,8 +87,6 @@ int main() {
                         	matrix[i][j] = rand() % 10;
                 	}
         	}
-
-
 
 	int cuadrado_magico = cuadradoMagico(matrix);
 	printf("La matriz utilizada corresponde a: \n");
